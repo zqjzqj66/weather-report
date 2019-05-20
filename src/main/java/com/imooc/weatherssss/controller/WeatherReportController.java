@@ -1,5 +1,6 @@
 package com.imooc.weatherssss.controller;
 
+import com.imooc.weatherssss.client.CityClient;
 import com.imooc.weatherssss.service.WeatherReportService;
 import com.imooc.weatherssss.vo.City;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +28,15 @@ public class WeatherReportController {
     @Autowired
     private WeatherReportService weatherReportService;
 
+    @Autowired
+    private CityClient cityClient;
+
     @GetMapping("/cityId/{cityId}")
     public ModelAndView reportWeather(@PathVariable("cityId") String cityId, Model model){
         model.addAttribute("title","格调的天气预报" );
         model.addAttribute("cityId",cityId );
-        City city1 = new City();
-        city1.setCityId("101190501");
-        city1.setCityName("南京");
-        //TODO 调用citylist微服务
-        List<City> cityList = Arrays.asList(city1);
-        model.addAttribute("cityList", cityList);
+        List<City> cityData = cityClient.getCityData();
+        model.addAttribute("cityList", cityData);
         model.addAttribute("report",weatherReportService.getDataByCityId(cityId));
         return new ModelAndView("weather/report","reportModel",model);
     }
