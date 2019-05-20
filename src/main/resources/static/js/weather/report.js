@@ -5,7 +5,7 @@
 $(function(){
     $("#selectedCityId").change(function(){
         var cityId = $("#selectedCityId").val();
-        var url = '/report/cityId/'+ cityId;
+        var url = '/weatherReport/report/cityId/'+ cityId;
         window.location.href = url;
     })
 });

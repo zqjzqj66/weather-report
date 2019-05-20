@@ -1,5 +1,6 @@
 package com.imooc.weatherssss.service.impl;
 
+import com.imooc.weatherssss.client.DataClient;
 import com.imooc.weatherssss.client.WeatherDataClient;
 import com.imooc.weatherssss.service.WeatherReportService;
 import com.imooc.weatherssss.vo.Weather;
@@ -17,10 +18,10 @@ import org.springframework.stereotype.Service;
 public class WeatherReportServiceImpl implements WeatherReportService {
 
     @Autowired
-    private WeatherDataClient weatherDataClient;
+    private DataClient dataClient;
 
     @Override
     public Weather getDataByCityId(String cityId) {
-        return weatherDataClient.getWeather(cityId);
+        return dataClient.getWeather(cityId);
     }
 }
