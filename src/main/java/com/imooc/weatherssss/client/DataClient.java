@@ -15,7 +15,7 @@ import java.util.List;
  * @ClassName: DataClient
  * @date 2019/5/20 18:57
  */
-@FeignClient("WEATHER-ZUUL")
+@FeignClient(value = "WEATHER-ZUUL",fallback = DataClientFallback.class)
 public interface DataClient {
 
     @GetMapping("/weatherCityList/cityList")
